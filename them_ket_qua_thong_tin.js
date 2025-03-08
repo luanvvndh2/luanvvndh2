@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const importKetQua = document.getElementById("importKetQua");
+    const importKetQua = document.getElementById("importKetQua");//sửa
     const importThongtin = document.getElementById("importThongtin");
 
     importKetQua.addEventListener("click", async function (event) {
