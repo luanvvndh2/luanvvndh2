@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
       const importKetQua = document.getElementById("importKetQua");
         const importThongtin = document.getElementById("importThongtin");
+      
 importKetQua.addEventListener("click", async function (event) {
         event.preventDefault(); // Ngăn chặn form load lại trang
             alert("importKetQuai!");
@@ -8,9 +9,9 @@ importKetQua.addEventListener("click", async function (event) {
 })
       
 importThongtin.addEventListener("click", async function (event) {
-        event.preventDefault(); // Ngăn chặn form load lại trang
-        handleImportThongTin() 
-})
+    event.preventDefault();
+    handleImportThongTin();  // ✅ Gọi đúng hàm xử lý
+});
     
 async function handleImportKetQua() {
         const fileInput = document.getElementById("fileKetQua");
