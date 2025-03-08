@@ -1,11 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-    // Khởi tạo Supabase client
-    const supabaseUrl = 'https://ezbqiajemruzegceorwv.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6YnFpYWplbXJ1emVnY2Vvcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMjg3OTEsImV4cCI6MjA1NjgwNDc5MX0.5Co6s1RLLIpNgMC2Qymf4ZwFdKwmh3EFLu1fu4n68Lc';
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
     const searchButton = document.getElementById("searchButton");
     const nameInput = document.getElementById("nameInput");
     const cccdInput = document.getElementById("cccdInput");
@@ -13,39 +6,69 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
     const resultTable = document.getElementById("resultTable");
     const resultTableBody = resultTable.querySelector("tbody");
 
-    searchButton.addEventListener("click", async (event) => {
-        event.preventDefault();//them
+    // Thay YOUR_API_KEY và YOUR_AUTH_TOKEN bằng khóa của bạn
+    const API_URL = "https://ezbqiajemruzegceorwv.supabase.co/rest/v1";
+    const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6YnFpYWplbXJ1emVnY2Vvcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMjg3OTEsImV4cCI6MjA1NjgwNDc5MX0.5Co6s1RLLIpNgMC2Qymf4ZwFdKwmh3EFLu1fu4n68Lc";
+
+    searchButton.addEventListener("click", async function (event) {
+        event.preventDefault(); // Ngăn chặn reload trang
         const hoTen = nameInput.value.trim();
         const soCccd = cccdInput.value.trim();
 
-        if (!hoTen || !soCccd) {
+        if (hoTen && soCccd) {
+            searchMessage.textContent = "Đang tìm kiếm...";
+            await handleSearch(hoTen, soCccd);
+        } else {
             searchMessage.textContent = "Vui lòng nhập cả HO_TEN và SO_CCCD.";
-            return;
         }
+    });
 
-        searchMessage.textContent = "Đang tìm kiếm...";
-        resultTable.style.display = "none";
-        resultTableBody.innerHTML = "";
-
+    async function handleSearch(hoTen, soCccd) {
         try {
-            // Gọi function search_results từ Supabase
-            const { data, error } = await supabase
-                .rpc('search_results', { ho_ten: hoTen, so_cccd: soCccd });
+            // Gọi API để tìm MA_LK từ bảng thongtin dựa trên HO_TEN và SO_CCCD
+            const thongtinResponse = await fetch(
+                `${API_URL}/thongtin?HO_TEN.ilike.%${hoTen}%&SO_CCCD.eq.${soCccd}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": API_KEY,
+                        "Authorization": `Bearer ${API_KEY}`
+                    }
+                }
+            );
+            const thongtinData = await thongtinResponse.json();
 
-            if (error) {
-                console.error("Lỗi khi gọi function:", error);
-                searchMessage.textContent = "Có lỗi xảy ra khi tìm kiếm.";
+            if (thongtinData.length === 0) {
+                searchMessage.textContent = "Không tìm thấy thông tin phù hợp.";
+                resultTable.style.display = "none";
                 return;
             }
 
-            if (data.length === 0) {
-                searchMessage.textContent = "Không tìm thấy kết quả.";
+            const maLk = thongtinData[0].MA_LK;
+
+            // Gọi API để lấy kết quả từ bảng ketqua dựa trên MA_LK
+            const ketquaResponse = await fetch(
+                `${API_URL}/ketqua?MA_LK.eq.${maLk}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": API_KEY,
+                        "Authorization": `Bearer ${API_KEY}`
+                    }
+                }
+            );
+            const ketquaData = await ketquaResponse.json();
+
+            if (ketquaData.length === 0) {
+                searchMessage.textContent = "Không có kết quả nào.";
+                resultTable.style.display = "none";
                 return;
             }
 
-            // Hiển thị kết quả
+            // Hiển thị kết quả vào bảng
             searchMessage.textContent = "";
-            data.forEach(item => {
+            resultTableBody.innerHTML = "";
+            ketquaData.forEach(item => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${item.MA_DICH_VU}</td>
@@ -57,11 +80,9 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
                 resultTableBody.appendChild(row);
             });
             resultTable.style.display = "table";
-
         } catch (error) {
-            console.error("Lỗi:", error);
+            console.error("Lỗi khi tìm kiếm:", error);
             searchMessage.textContent = "Có lỗi xảy ra khi tìm kiếm.";
         }
-    });
-
-})
+    }
+});
