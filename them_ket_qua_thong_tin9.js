@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
       
 importKetQua.addEventListener("click", async function (event) {
         event.preventDefault(); // Ngăn chặn form load lại trang
-            alert("importKetQuai!");
+      handleImportKetQua() 
+          
      
 })
       
