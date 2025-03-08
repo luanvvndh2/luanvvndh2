@@ -5,6 +5,11 @@ importKetQua.addEventListener("click", async function (event) {
         event.preventDefault(); // Ngăn chặn form load lại trang
         importKetQua() 
 })
+      
+importThongtin.addEventListener("click", async function (event) {
+        event.preventDefault(); // Ngăn chặn form load lại trang
+        importThongTin() 
+})
     
 async function importKetQua() {
         const fileInput = document.getElementById("fileKetQua");
