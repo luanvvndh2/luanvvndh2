@@ -1,4 +1,5 @@
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+document.addEventListener("DOMContentLoaded", function () {
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
     // Khởi tạo Supabase client
     const supabaseUrl = 'https://ezbqiajemruzegceorwv.supabase.co';
@@ -12,7 +13,8 @@
     const resultTable = document.getElementById("resultTable");
     const resultTableBody = resultTable.querySelector("tbody");
 
-    searchButton.addEventListener("click", async () => {
+    searchButton.addEventListener("click", async (event) => {
+        event.preventDefault();//them
         const hoTen = nameInput.value.trim();
         const soCccd = cccdInput.value.trim();
 
@@ -61,3 +63,5 @@
             searchMessage.textContent = "Có lỗi xảy ra khi tìm kiếm.";
         }
     });
+
+})
