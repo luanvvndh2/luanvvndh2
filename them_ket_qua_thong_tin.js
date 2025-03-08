@@ -1,4 +1,12 @@
-    async function importKetQua() {
+document.addEventListener("DOMContentLoaded", function () {
+      const importKetQua = document.getElementById("importKetQua");
+        const importThongtin = document.getElementById("importThongtin");
+importKetQua.addEventListener("click", async function (event) {
+        event.preventDefault(); // Ngăn chặn form load lại trang
+        importKetQua() 
+})
+    
+async function importKetQua() {
         const fileInput = document.getElementById("fileKetQua");
         const message = document.getElementById("messageKetQua");
 
@@ -59,3 +67,4 @@
         });
         return response;
     }
+})
