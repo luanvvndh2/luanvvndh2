@@ -4,15 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
 importKetQua.addEventListener("click", async function (event) {
         event.preventDefault(); // Ngăn chặn form load lại trang
             alert("importKetQuai!");
-        importKetQua() 
+        handleImportKetQua() 
 })
       
 importThongtin.addEventListener("click", async function (event) {
         event.preventDefault(); // Ngăn chặn form load lại trang
-        importThongTin() 
+        handleImportThongTin() 
 })
     
-async function importKetQua() {
+async function handleImportKetQua() {
         const fileInput = document.getElementById("fileKetQua");
         const message = document.getElementById("messageKetQua");
 
@@ -29,7 +29,7 @@ async function importKetQua() {
         message.textContent = response.ok ? "Import Kết Quả thành công!" : "Có lỗi xảy ra khi import Kết Quả.";
     }
 
-    async function importThongTin() {
+    async function handleImportThongTin() {
         const fileInput = document.getElementById("fileThongTin");
         const message = document.getElementById("messageThongTin");
 
