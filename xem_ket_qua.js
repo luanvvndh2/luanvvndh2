@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultTable = document.getElementById("resultTable");
     const resultTableBody = resultTable.querySelector("tbody");
 
-    searchButton.addEventListener("click", async function () {
+    searchButton.addEventListener("click", async function (event) {
+         event.preventDefault();
         const hoTen = nameInput.value.trim();
         const soCccd = cccdInput.value.trim();
 
