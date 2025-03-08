@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             searchMessage.textContent = "Đang tìm kiếm...";
             await handleSearch(hoTen, soCccd);
         } else {
-            searchMessage.textContent = "Vui lòng nhập cả HO_TEN và SO_CCCD.";
+            searchMessage.textContent = "Vui lòng nhập cả BHYT và SO_CCCD.";
         }
     });
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             // Gọi API để tìm MA_LK từ bảng thongtin dựa trên HO_TEN và SO_CCCD
             const thongtinResponse = await fetch(
-                `${API_URL}/thongtin?HO_TEN.ilike.%${hoTen}%&SO_CCCD.eq.${soCccd}`,
+                `${API_URL}/thongtin?MA_THE_BHYT.ilike.%${hoTen}%&SO_CCCD.eq.${soCccd}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
