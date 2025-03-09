@@ -37,7 +37,7 @@
             #searchButton:hover {
             background-color: #2980b9;
             }
-            #searchMessage {
+            #searchMessage,#searchMessage1 {
             text-align: center;
             margin-top: 10px;
             color: #e74c3c;
@@ -48,8 +48,8 @@
             width: 80%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
-            #resultTable th,#resultTable1 th,
-            #resultTable td , #resultTable1 td{
+            #resultTable th, #resultTable1 th,
+            #resultTable td, #resultTable1 td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
@@ -58,12 +58,13 @@
             background-color: #3498db;
             color: white;
             }
-            #resultTable tr,# #resultTable1 tr:nth-child(even) {
+            /* &Aacute;p dụng m&agrave;u nền xen kẽ cho cả hai bảng */
+            #resultTable tr:nth-child(even), #resultTable1 tr:nth-child(even) {
             background-color: #f2f2f2;
             }
-            #resultTable tr, #resultTable1 tr:hover {
+            /* Hover (di chuột v&agrave;o h&agrave;ng) */
+            #resultTable tr:hover, #resultTable1 tr:hover {
             background-color: #f1c40f;
-            }
         </style>
     </head>
     <body>
