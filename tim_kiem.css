@@ -42,26 +42,26 @@
             margin-top: 10px;
             color: #e74c3c;
             }
-            #resultTable {
+            #resultTable, #resultTable1{
             margin: 20px auto;
             border-collapse: collapse;
             width: 80%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
-            #resultTable th,
-            #resultTable td {
+            #resultTable th,#resultTable1 th,
+            #resultTable td , #resultTable1 td{
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
             }
-            #resultTable th {
+            #resultTable th, #resultTable1 th {
             background-color: #3498db;
             color: white;
             }
-            #resultTable tr:nth-child(even) {
+            #resultTable tr,# #resultTable1 tr:nth-child(even) {
             background-color: #f2f2f2;
             }
-            #resultTable tr:hover {
+            #resultTable tr, #resultTable1 tr:hover {
             background-color: #f1c40f;
             }
         </style>
@@ -75,6 +75,7 @@
         <button type="button" id="searchButton" class="btn btn-primary">T&igrave;m kiếm</button>
         </div>
         <div id="searchMessage">&nbsp;</div>
+        <div id="searchMessage1">&nbsp;</div>
         <table border="1" id="resultTable">
             <thead>
                 <tr>
@@ -83,6 +84,19 @@
                     <th>TEN_CHI_SO</th>
                     <th>GIA_TRI</th>
                     <th>KET_LUAN</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table border="1" id="resultTable1">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>TEN_THUOC</th>
+                    <th>HAM_LUONG</th>
+                    <th>SO_LUONG</th>
+                    <th>DON_VI_TINH</th>
                 </tr>
             </thead>
             <tbody>
