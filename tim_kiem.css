@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>T&igrave;m kiếm kết quả</title>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            }
+            h2 {
+            text-align: center;
+            color: #333;
+            }
+            #searchContainer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            }
+            input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            }
+            #searchButton {
+            padding: 6px 12px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+            #searchButton:hover {
+            background-color: #2980b9;
+            }
+            #searchMessage {
+            text-align: center;
+            margin-top: 10px;
+            color: #e74c3c;
+            }
+            #resultTable {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #resultTable th,
+            #resultTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            }
+            #resultTable th {
+            background-color: #3498db;
+            color: white;
+            }
+            #resultTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+            }
+            #resultTable tr:hover {
+            background-color: #f1c40f;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>T&igrave;m kiếm kết quả</h2>
+        <div id="searchContainer">
+        <input type="text" id="hotenTInput" placeholder="Nhập họ tên" />
+        <input type="text" id="namsinhTInput" placeholder="Ngày/năm sinh  31/12/1950 hoặc 1950 " />
+        <input type="text" id="maTheBHYTInput" placeholder="Nhập BHYT" />
+        <button type="button" id="searchButton" class="btn btn-primary">T&igrave;m kiếm</button>
+        </div>
+        <div id="searchMessage">&nbsp;</div>
+        <table border="1" id="resultTable">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>MA_DICH_VU</th>
+                    <th>TEN_CHI_SO</th>
+                    <th>GIA_TRI</th>
+                    <th>KET_LUAN</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </body>
+</html>
