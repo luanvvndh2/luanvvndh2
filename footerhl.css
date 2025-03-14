@@ -1,0 +1,31 @@
+    @keyframes blink {
+    0% { background: #ffeb3b; }
+    50% { background: #ffc107; }
+    100% { background: #ffeb3b; }
+    }
+    .quangcao-phongkham {
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    margin: auto;
+    }
+    .quangcao-phongkham .hotline {
+    font-size: 22px;
+    font-weight: bold;
+    background: #ffeb3b;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    animation: blink 1s infinite;
+    }
+    .quangcao-phongkham .hotline:hover {
+    transition: 0.3s;
+    }
